@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Auto Window Close",
+  "version": "1.0",
+  "description": "Automatically closes the window when it becomes inactive.",
+  "permissions": ["tabs", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Toggle Auto Window Close"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
