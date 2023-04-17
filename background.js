@@ -1,6 +1,6 @@
 let targetWindowId;
 
-chrome.runtime.onMessage.addListener((message, _, _) => {
+chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
   if (message.action === "toggle") {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       targetWindowId = tabs[0].windowId;
