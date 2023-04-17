@@ -8,9 +8,19 @@ chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
   }
 });
 
-chrome.windows.onFocusChanged.addListener((_) => {
+chrome.windows.onFocusChanged.addListener((windowId) => {
+  if (windowId === targetWindowId) return;
+
   if (targetWindowId) {
     chrome.windows.remove(targetWindowId);
     targetWindowId = null;
+  }
+});
+
+chrome.commands.onCommand.addListener((command) => {
+  if (command === "new_window_toggle") {
+    chrome.windows.create({}, (newWindow) => {
+      targetWindowId = newWindow.id;
+    });
   }
 });

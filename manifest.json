@@ -3,12 +3,20 @@
   "name": "Auto Window Close",
   "version": "1.0",
   "description": "Automatically closes the window when it becomes inactive.",
-  "permissions": ["tabs", "storage"],
+  "permissions": ["tabs", "windows"],
   "action": {
     "default_popup": "popup.html",
     "default_title": "Toggle Auto Window Close"
   },
   "background": {
     "service_worker": "background.js"
+  },
+  "commands": {
+    "new_window_toggle": {
+      "suggested_key": {
+        "default": "Ctrl+MacCtrl+N"
+      },
+      "description": "Create a new window and toggle"
+    }
   }
 }
