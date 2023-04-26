@@ -4,10 +4,6 @@
   "version": "1.0",
   "description": "Automatically closes the window when it becomes inactive.",
   "permissions": ["tabs", "windows"],
-  "action": {
-    "default_popup": "popup.html",
-    "default_title": "Toggle Auto Window Close"
-  },
   "background": {
     "service_worker": "background.js"
   },
@@ -17,6 +13,24 @@
         "default": "Ctrl+MacCtrl+N"
       },
       "description": "Create a new window and toggle"
+    },
+    "other_tab_close": {
+      "suggested_key": {
+        "default": "Ctrl+J"
+      },
+      "description": "Delete other tabs"
+    },
+    "close_duplicate_tabs": {
+      "suggested_key": {
+        "default": "Ctrl+K"
+      },
+      "description": "Delete other tabs"
+    },
+    "move_tabs_to_active_window": {
+      "suggested_key": {
+        "default": "Ctrl+I"
+      },
+      "description": "Delete other tabs"
     }
   }
 }
