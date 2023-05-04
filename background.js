@@ -1,5 +1,10 @@
 let targetWindowId;
 
+function getDomain(url) {
+  const urlObj = new URL(url);
+  return urlObj.hostname;
+}
+
 chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
   if (message.action === "toggle") {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -59,6 +64,26 @@ chrome.commands.onCommand.addListener((command) => {
         tabs.forEach((tab) => {
           if (tab.windowId !== targetWindowId) {
             chrome.tabs.move(tab.id, { windowId: targetWindowId, index: -1 });
+          }
+        });
+      });
+    });
+  }
+  if (command === "delete_same_domain_tab") {
+    console.log("delete_same_domain_tab");
+    chrome.tabs.query({ active: true, currentWindow: true }, (activeTabs) => {
+      if (activeTabs.length === 0) return;
+
+      const activeTab = activeTabs[0];
+      const activeTabDomain = getDomain(activeTab.url);
+
+      chrome.tabs.query({}, (allTabs) => {
+        allTabs.forEach((tab) => {
+          if (getDomain(tab.url) === activeTabDomain) {
+            if (tab.id === activeTab.id) {
+              return;
+            }
+            chrome.tabs.remove(tab.id);
           }
         });
       });
