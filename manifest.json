@@ -28,7 +28,7 @@
     },
     "delete_same_domain_tab": {
       "suggested_key": {
-        "default": "Ctrl+E"
+        "default": "Ctrl+H"
       },
       "description": "Delete all tabs with the same domain as the active tab"
     }
